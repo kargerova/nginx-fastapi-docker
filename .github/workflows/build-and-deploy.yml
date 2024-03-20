@@ -44,7 +44,7 @@ jobs:
         APP_SERVER_IP: ${{ vars.APP_SERVER_IP }}
         APP_SERVER_PORT: ${{ vars.APP_SERVER_PORT }}
       run: |
-        ssh -o StrictHostKeyChecking=no $APP_SERVER_IP "
+        ssh -o StrictHostKeyChecking=no ubuntu@$APP_SERVER_IP "
         docker pull ${{ secrets.DOCKERHUB_USERNAME }}/app1:latest
         docker pull ${{ secrets.DOCKERHUB_USERNAME }}/nginx:latest
         docker-compose -f docker-compose.yml up -d
