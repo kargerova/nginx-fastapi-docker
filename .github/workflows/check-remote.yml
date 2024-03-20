@@ -22,4 +22,5 @@ jobs:
       run: |
         pwd
         ls -la
-
+        scp -o StrictHostKeyChecking=no docker-compose.yml ubuntu@$APP_SERVER_IP:/home/runner/work/nginx-fastapi-docker/nginx-fastapi-docker
+        ls -la
