@@ -20,7 +20,7 @@ jobs:
         APP_SERVER_IP: ${{ vars.APP_SERVER_IP }}
         APP_SERVER_PORT: ${{ vars.APP_SERVER_PORT }}
       run: |
-        ssh -o StrictHostKeyChecking=no ubuntu@$APP_SERVER_IP -p $APP_SERVER_PORT
+        ssh -o StrictHostKeyChecking=no ubuntu@$APP_SERVER_IP
         pwd
         ls -la
 
