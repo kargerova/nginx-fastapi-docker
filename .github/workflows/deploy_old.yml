@@ -20,10 +20,10 @@ jobs:
 
       - name: Build and push Docker images
         run: |
-          docker build -t nginx_proxy .
-          docker tag nginx_proxy your_dockerhub_username/nginx_proxy:latest
-          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u your_dockerhub_username --password-stdin
-          docker push your_dockerhub_username/nginx_proxy:latest
+          docker build -t nginx-proxy .
+          docker tag nginx-proxy ${{ secrets.DOCKERHUB_USERNAME }}/nginx-proxy:latest
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/nginx-proxy:latest
 
       - name: Deploy containers to infrastructure
         run: |
