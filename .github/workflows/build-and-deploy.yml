@@ -48,7 +48,6 @@ jobs:
         ssh_host: ${{ vars.APP_SERVER_IP }}
         ssh_private_key:  ${{ secrets.SSH_PRIVATE_KEY }}
         ssh_user: ubuntu
-        docker_compose_prefix: example_com
         docker_compose_filename: docker-compose.yml
 
     - name: Check if app is running
