@@ -25,9 +25,8 @@ jobs:
     - name: Build and push app1
       run: |
         docker build -t app1 ./api_app_1
-        docker tag app1 ${{ secrets.DOCKERHUB_USERNAME }}/app1:latest
+        docker tag app1 ${{ secrets.DOCKERHUB_USERNAME }}/app1:${{ github.sha }}
         docker push ${{ secrets.DOCKERHUB_USERNAME }}/app1:latest
-        docker push ${{ secrets.DOCKERHUB_USERNAME }}/app1:$COMMIT_SHA
 
     - name: Build and push nginx
       run: |
