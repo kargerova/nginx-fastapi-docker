@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Swagger UI</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.52.2/swagger-ui.min.css">
+</head>
+<body>
+    Here you will receive the Swagger UI for your API. Replace the URL in the script tag with your API's Swagger JSON URL.
+    <div id="swagger-ui"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.52.2/swagger-ui-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.52.2/swagger-ui-standalone-preset.min.js"></script>
+    <script>
+        window.onload = function() {
+            const ui = SwaggerUIBundle({
+                url: "https://your-api-url.com/swagger.json", // Replace with your API's Swagger JSON URL
+                dom_id: '#swagger-ui',
+                presets: [
+                    SwaggerUIBundle.presets.apis,
+                    SwaggerUIStandalonePreset
+                ],
+                layout: "BaseLayout"
+            });
+        }
+    </script>
+</body>
+</html>

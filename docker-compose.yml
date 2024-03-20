@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  nginx:
+    container_name: nginx
+    build: 
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - app1
+
+  app1:
+    container_name: api_app_1
+    build: 
+      context: ./api_app_1
+      dockerfile: Dockerfile 
+    ports:
+      - "3000:8030"

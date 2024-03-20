@@ -1,0 +1,32 @@
+name: Deploy NGINX Proxy and Swagger
+
+on:
+  workflow_dispatch:  # Spustitelný manuálně
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      APP_SERVER_IP: ${{ secrets.APP_SERVER_IP }}
+      APP_SERVER_PORT: ${{ secrets.APP_SERVER_PORT }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Build and push Docker images
+        run: |
+          docker build -t nginx_proxy .
+          docker tag nginx_proxy your_dockerhub_username/nginx_proxy:latest
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u your_dockerhub_username --password-stdin
+          docker push your_dockerhub_username/nginx_proxy:latest
+
+      - name: Deploy containers to infrastructure
+        run: |
+          docker-compose -f docker-compose.yml up -d
+          sleep 10  # Počkejte na spuštění kontejnerů
+          curl http://$APP_SERVER_IP:$APP_SERVER_PORT/app1/api  # Testování přístupu k aplikaci
