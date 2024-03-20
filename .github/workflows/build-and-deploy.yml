@@ -41,8 +41,8 @@ jobs:
 
     - name: Deploy to server
       env:
-        APP_SERVER_IP: ${{ env.APP_SERVER_IP }}
-        APP_SERVER_PORT: ${{ env.APP_SERVER_PORT }}
+        APP_SERVER_IP: ${{ vars.APP_SERVER_IP }}
+        APP_SERVER_PORT: ${{ vars.APP_SERVER_PORT }}
       run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.APP_SERVER_IP }} "
         docker pull ${{ secrets.DOCKERHUB_USERNAME }}/app1:latest
