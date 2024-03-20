@@ -17,7 +17,7 @@ services:
 
   app1:
     container_name: api_app_1
-    image: kavini/api_app_1:latest
+    image: kavini/app1:latest
     # build: 
     #   context: ./api_app_1
     #   dockerfile: Dockerfile 
