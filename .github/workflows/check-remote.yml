@@ -1,0 +1,25 @@
+name: Check remote server
+
+on:
+    workflow_dispatch:  # Spustitelný manuálně
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment: production
+
+
+    steps:
+    - name: Set up SSH
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Check server
+      env:
+        APP_SERVER_IP: ${{ vars.APP_SERVER_IP }}
+        APP_SERVER_PORT: ${{ vars.APP_SERVER_PORT }}
+      run: |
+        pwd
+        ls -la
+
