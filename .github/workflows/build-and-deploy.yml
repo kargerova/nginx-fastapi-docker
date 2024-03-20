@@ -40,15 +40,16 @@ jobs:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
     - name: Deploy to server
+      uses: alex-ac/github-action-ssh-docker-compose@master
       env:
         APP_SERVER_IP: ${{ vars.APP_SERVER_IP }}
         APP_SERVER_PORT: ${{ vars.APP_SERVER_PORT }}
-      run: |
-        ssh -o StrictHostKeyChecking=no ubuntu@$APP_SERVER_IP "
-        sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/app1:latest
-        sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/nginx:latest
-        sudo docker-compose -f docker-compose.yml up -d
-        "
+      with:
+        ssh_host: example.com
+        ssh_private_key:  ${{ secrets.SSH_PRIVATE_KEY }}
+        ssh_user: ubuntu
+        docker_compose_prefix: example_com
+        docker_compose_filename: docker-compose.yml
 
     - name: Check if app is running
       env:
