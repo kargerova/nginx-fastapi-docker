@@ -2,7 +2,8 @@ version: '3'
 
 services:
   nginx:
-    container_name: kavini/nginx
+    container_name: nginx
+    image: kavini/nginx:latest
     # build: 
     #   context: ./nginx
     #   dockerfile: Dockerfile
@@ -15,7 +16,8 @@ services:
     #   - APP_SERVER_PORT=${APP_SERVER_PORT}
 
   app1:
-    container_name: kavini/api_app_1
+    container_name: api_app_1
+    image: kavini/api_app_1:latest
     # build: 
     #   context: ./api_app_1
     #   dockerfile: Dockerfile 
