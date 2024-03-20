@@ -10,6 +10,7 @@ jobs:
     env:
         APP_SERVER_IP: ${{ secrets.APP_SERVER_IP }}
         APP_SERVER_PORT: ${{ secrets.APP_SERVER_PORT }}
+        ENVIRONMENT: production
 
     steps:
     - name: Checkout code
