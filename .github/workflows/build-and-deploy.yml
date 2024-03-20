@@ -46,6 +46,7 @@ jobs:
         APP_SERVER_PORT: ${{ vars.APP_SERVER_PORT }}
       with:
         ssh_host: ${{ vars.APP_SERVER_IP }}
+        ssh_port: 22
         ssh_private_key:  ${{ secrets.SSH_PRIVATE_KEY }}
         ssh_user: ubuntu
         docker_compose_filename: docker-compose.yml

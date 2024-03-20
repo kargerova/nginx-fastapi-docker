@@ -2,7 +2,7 @@ version: '3'
 
 services:
   nginx:
-    container_name: nginx
+    container_name: nginx_proxy
     image: kavini/nginx:latest
     # build: 
     #   context: ./nginx
