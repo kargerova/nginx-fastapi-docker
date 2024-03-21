@@ -40,16 +40,33 @@ jobs:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
     - name: Deploy to server
-      uses: alex-ac/github-action-ssh-docker-compose@master
       env:
         APP_SERVER_IP: ${{ vars.APP_SERVER_IP }}
         APP_SERVER_PORT: ${{ vars.APP_SERVER_PORT }}
-      with:
-        ssh_host: ${{ vars.APP_SERVER_IP }}
-        ssh_port: 22
-        ssh_private_key:  ${{ secrets.SSH_PRIVATE_KEY }}
-        ssh_user: ubuntu
-        docker_compose_filename: docker-compose.yml
+        GITHUB_SHA: ${{ github.sha }}
+      run: |
+        scp -o StrictHostKeyChecking=no docker-compose.yml ubuntu@$APP_SERVER_IP:/home/ubuntu/deploy
+        ssh -o StrictHostKeyChecking=no ubuntu@$APP_SERVER_IP "
+        export APP_SERVER_IP=${{ secrets.APP_SERVER_IP }}
+        export APP_SERVER_PORT=${{ secrets.APP_SERVER_PORT }}
+        export GITHUB_SHA=${{ github.sha }}
+        sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/app1:$GITHUB_SHA
+        sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/nginx:$GITHUB_SHA
+        sudo docker-compose -f /home/ubuntu/deploy/docker-compose.yml up -d
+        "
+
+    # - name: Deploy to server
+    #   uses: alex-ac/github-action-ssh-docker-compose@master
+    #   env:
+    #     APP_SERVER_IP: ${{ vars.APP_SERVER_IP }}
+    #     APP_SERVER_PORT: ${{ vars.APP_SERVER_PORT }}
+    #     GITHUB_SHA: ${{ github.sha }}
+    #   with:
+    #     ssh_host: ${{ vars.APP_SERVER_IP }}
+    #     ssh_port: 22
+    #     ssh_private_key:  ${{ secrets.SSH_PRIVATE_KEY }}
+    #     ssh_user: ubuntu
+    #     docker_compose_filename: docker-compose.yml
 
     - name: Check if app is running
       env:
