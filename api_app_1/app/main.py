@@ -38,4 +38,5 @@ def read_root():
         "message": "Hello World",
         "body": "Welcome to the FastAPI application.",
         "app name": app_settings.APP_NAME,
+        "version": app_settings.VERSION,
         }

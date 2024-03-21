@@ -25,15 +25,14 @@ jobs:
     - name: Build and push app1
       run: |
         docker build -t app1 ./api_app_1
-        docker tag app1 ${{ secrets.DOCKERHUB_USERNAME }}/app1:latest
         docker tag app1 ${{ secrets.DOCKERHUB_USERNAME }}/app1:${{ github.sha }}
-        docker push ${{ secrets.DOCKERHUB_USERNAME }}/app1:latest
+        docker push ${{ secrets.DOCKERHUB_USERNAME }}/app1:${{ github.sha }}
 
     - name: Build and push nginx
       run: |
         docker build -t nginx ./nginx
-        docker tag nginx ${{ secrets.DOCKERHUB_USERNAME }}/nginx:latest
-        docker push ${{ secrets.DOCKERHUB_USERNAME }}/nginx:latest
+        docker tag nginx ${{ secrets.DOCKERHUB_USERNAME }}/nginx:${{ github.sha }}
+        docker push ${{ secrets.DOCKERHUB_USERNAME }}/nginx:${{ github.sha }}
 
     - name: Set up SSH
       uses: webfactory/ssh-agent@v0.5.3
