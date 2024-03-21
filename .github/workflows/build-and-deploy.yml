@@ -48,12 +48,12 @@ jobs:
       run: |
         scp -o StrictHostKeyChecking=no docker-compose.yml $APP_SERVER_USERNAME@$APP_SERVER_IP:/home/ubuntu/deploy
         ssh -o StrictHostKeyChecking=no $APP_SERVER_USERNAME@$APP_SERVER_IP "
-        export APP_SERVER_IP=${{ secrets.APP_SERVER_IP }}
-        export APP_SERVER_PORT=${{ secrets.APP_SERVER_PORT }}
+        export APP_SERVER_IP=${{ vars.APP_SERVER_IP }}
+        export APP_SERVER_PORT=${{ vars.APP_SERVER_PORT }}
         export GITHUB_SHA=${{ github.sha }}
         sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/app1:$GITHUB_SHA
         sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/nginx:$GITHUB_SHA
-        sudo docker-compose -f /home/ubuntu/deploy/docker-compose.yml up -d
+        sudo docker-compose -e GITHUB_SHA=$GITHUB_SHA -f /home/ubuntu/deploy/docker-compose.yml up -d
         "
 
     # - name: Deploy to server
