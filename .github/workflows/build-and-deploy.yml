@@ -48,13 +48,19 @@ jobs:
       run: |
         scp -o StrictHostKeyChecking=no docker-compose.yml $APP_SERVER_USERNAME@$APP_SERVER_IP:/home/ubuntu/deploy
         ssh -o StrictHostKeyChecking=no $APP_SERVER_USERNAME@$APP_SERVER_IP "
+        echo "Setting environment variables..."
         export APP_SERVER_IP=${{ vars.APP_SERVER_IP }}
         export APP_SERVER_PORT=${{ vars.APP_SERVER_PORT }}
         export GITHUB_SHA=${{ github.sha }}
-        printenv
+        echo "Creating env file..."
+        echo "APP_SERVER_IP=${APP_SERVER_IP}" >> /home/ubuntu/deploy/.env
+        echo "APP_SERVER_PORT=${APP_SERVER_PORT}" >> /home/ubuntu/deploy/.env
+        echo "GITHUB_SHA=${GITHUB_SHA}" >> /home/ubuntu/deploy/.env
+        echo "Pulling images and starting containers..."
         sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/app1:$GITHUB_SHA
         sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/nginx:$GITHUB_SHA
-        sudo docker-compose -f /home/ubuntu/deploy/docker-compose.yml up -d
+        echo "Using env file in docker-compose..."
+        sudo docker-compose -f /home/ubuntu/deploy/docker-compose.yml --env-file /home/ubuntu/deploy/.env up -d
         "
 
     - name: Check if app is running
