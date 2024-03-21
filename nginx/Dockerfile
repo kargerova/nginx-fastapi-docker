@@ -6,8 +6,6 @@ WORKDIR /app
 
 # Kopírování vlastního konfiguračního souboru
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY start-nginx.sh /start-nginx.sh
-RUN chmod +x /start-nginx.sh
 
 # Kopírování static souborů do adresáře /app
 COPY ./static ./static

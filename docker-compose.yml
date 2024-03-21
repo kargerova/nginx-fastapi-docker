@@ -14,7 +14,6 @@ services:
     environment:
       - APP_SERVER_IP=${APP_SERVER_IP}
       - APP_SERVER_PORT=${APP_SERVER_PORT}
-    command: /start-nginx.sh
 
   app1:
     container_name: api_app_1
