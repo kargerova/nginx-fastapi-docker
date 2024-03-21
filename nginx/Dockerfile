@@ -8,7 +8,7 @@ WORKDIR /app
 COPY nginx.conf /etc/nginx/nginx.conf
 
 # Kopírování static souborů do adresáře /app
-COPY ./static ./static
+COPY ./static /etc/nginx/static
 
 # Nastavení oprávnění na static soubory pro uživatele nginx
-RUN chown -R nginx:nginx /app/static
+#RUN chown -R nginx:nginx /app/static
