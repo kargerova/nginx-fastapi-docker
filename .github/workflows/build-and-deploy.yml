@@ -43,7 +43,7 @@ jobs:
       env:
         APP_SERVER_IP: ${{ vars.APP_SERVER_IP }}
         APP_SERVER_PORT: ${{ vars.APP_SERVER_PORT }}
-        APP_SERVER_USERNAME: ${{ vars.APP_SERVER_USERNAME }}
+        APP_SERVER_USERNAME: ${{ secrets.APP_SERVER_USERNAME }}
         GITHUB_SHA: ${{ github.sha }}
       run: |
         scp -o StrictHostKeyChecking=no docker-compose.yml $APP_SERVER_USERNAME@$APP_SERVER_IP:/home/ubuntu/deploy
