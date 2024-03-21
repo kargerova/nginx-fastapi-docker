@@ -1,7 +1,7 @@
 
 class Settings:
     APP_NAME = 'API App 1'
-    VERSION = "0.1.0"
+    VERSION = "0.0.2"
     DESCRIPTION="Simple FastAPI application"
     CONTACT={
         "name": "Lenka Kargerová",
