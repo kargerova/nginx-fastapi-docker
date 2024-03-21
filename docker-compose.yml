@@ -3,7 +3,7 @@ version: '3'
 services:
   nginx:
     container_name: nginx_proxy
-    image: kavini/nginx:$GITHUB_SHA
+    image: kavini/nginx:${GITHUB_SHA}
     # build: 
     #   context: ./nginx
     #   dockerfile: Dockerfile
@@ -12,12 +12,12 @@ services:
     depends_on:
       - app1
     environment:
-      - APP_SERVER_IP=$APP_SERVER_IP
-      - APP_SERVER_PORT=$APP_SERVER_PORT
+      - APP_SERVER_IP=${APP_SERVER_IP}
+      - APP_SERVER_PORT=${APP_SERVER_PORT}
 
   app1:
     container_name: api_app_1
-    image: kavini/app1:$GITHUB_SHA
+    image: kavini/app1:${GITHUB_SHA}
     # build: 
     #   context: ./api_app_1
     #   dockerfile: Dockerfile 
