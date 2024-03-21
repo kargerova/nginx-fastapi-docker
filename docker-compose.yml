@@ -12,8 +12,8 @@ services:
     depends_on:
       - app1
     environment:
-      - APP_SERVER_IP=$APP_SERVER_IP
-      - APP_SERVER_PORT=$APP_SERVER_PORT
+      - APP_SERVER_IP=${{ secrets.APP_SERVER_IP }}
+      - APP_SERVER_PORT=${{ secrets.APP_SERVER_IP }}
 
   app1:
     container_name: api_app_1
