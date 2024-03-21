@@ -51,6 +51,7 @@ jobs:
         export APP_SERVER_IP=${{ vars.APP_SERVER_IP }}
         export APP_SERVER_PORT=${{ vars.APP_SERVER_PORT }}
         export GITHUB_SHA=${{ github.sha }}
+        printenv
         sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/app1:$GITHUB_SHA
         sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/nginx:$GITHUB_SHA
         sudo docker-compose -f /home/ubuntu/deploy/docker-compose.yml up -d
