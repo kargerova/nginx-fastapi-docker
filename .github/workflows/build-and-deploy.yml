@@ -68,4 +68,4 @@ jobs:
         APP_SERVER_IP: ${{ vars.APP_SERVER_IP }}
         APP_SERVER_PORT: ${{ vars.APP_SERVER_PORT }}
       run: |
-        curl -s $APP_SERVER_IP:$APP_SERVER_PORT/app1/api/
+        curl $APP_SERVER_IP:$APP_SERVER_PORT/app1/api/#
