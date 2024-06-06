@@ -1,0 +1,4 @@
+apiVersion: v1
+description: App1 test chart
+name: lenkas-app
+version: 0.10.0-dev

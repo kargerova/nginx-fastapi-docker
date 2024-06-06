@@ -1,0 +1,15 @@
+# Optional
+image: kavini/app1
+replicas: 1
+host: null
+clusterIssuer: letsencrypt
+TEXT:
+COLOR:
+BACKGROUND_COLOR:
+# ingressExtraAnnotations:
+#   name: value
+#   foo: bar
+ingressClassName: nginx
+ingressExtraAnnotations: {}
+tlsKeyBase64: null
+tlsCrtBase64: null
