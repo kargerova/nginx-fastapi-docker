@@ -35,7 +35,7 @@ def read_root():
     Returns a JSON response with the message "Hello World".
     """
     return {
-        "message": "Hello World",
+        "message": "Hello from KCD 😀",
         "body": "Welcome to the FastAPI application.",
         "app name": app_settings.APP_NAME,
         "version": app_settings.VERSION,
